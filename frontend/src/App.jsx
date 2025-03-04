@@ -40,7 +40,7 @@ const App = () => {
   const fetchHospitalsByCity = async (city) => {
     setLoading(true);
     try {
-      const response = await axios.get(http://localhost:5000/api/v1/hospitals?city=${city});
+      const response = await axios.get(`http://localhost:5000/api/v1/hospitals?city=${city}`);
       setHospitals(response.data);
     } catch (err) {
       showToastMessage("Error fetching hospitals by city");
@@ -62,7 +62,7 @@ const App = () => {
     try {
       if (editHospitalId) {
         // Update hospital
-        await axios.put(http://localhost:5000/api/v1/hospitals/update?id=${editHospitalId}, formData);
+        await axios.put(`http://localhost:5000/api/v1/hospitals/update?id=${editHospitalId}`, formData);
         showToastMessage("Hospital updated successfully!");
       } else {
         // Create hospital
@@ -96,7 +96,7 @@ const App = () => {
   const handleDelete = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(http://localhost:5000/api/v1/hospitals/delete?id=${id});
+      await axios.delete(`http://localhost:5000/api/v1/hospitals/delete?id=${id}`);
       showToastMessage("Hospital deleted successfully!");
       fetchAllHospitals(); // Refresh hospital list
     } catch (err) {
@@ -188,7 +188,7 @@ const App = () => {
           <Form.Group>
             <Form.Control
               type="text"
-              placeholder="Search by City"
+              placeholder="Enter Complete city Name"
               onChange={(e) => fetchHospitalsByCity(e.target.value)}
             />
           </Form.Group>
@@ -241,4 +241,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;
